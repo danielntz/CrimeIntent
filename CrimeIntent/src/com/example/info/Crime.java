@@ -62,6 +62,12 @@ public class Crime {
 		public void setmSolved(boolean mSolved) {
 			this.mSolved = mSolved;
 		}
+		public UUID getmId() {
+			return mId;
+		}
+		public void setmId(UUID mId) {
+			this.mId = mId;
+		}
 	
 	  
 	
