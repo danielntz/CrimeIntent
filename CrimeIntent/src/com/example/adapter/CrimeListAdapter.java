@@ -79,5 +79,9 @@ public class CrimeListAdapter  extends BaseAdapter{
 		
 	}
 	
+	public  void refresh(List<Crime> hhh){
+		  this.crime_list = hhh;
+		  notifyDataSetChanged();
+	}
 	
 }

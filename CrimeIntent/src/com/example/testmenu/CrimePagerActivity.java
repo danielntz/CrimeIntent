@@ -21,7 +21,8 @@ public class CrimePagerActivity  extends FragmentActivity{
 	  private   ViewPager  mViewPager;
 	  private   CrimeAdapter   adapter;
 	  private   List<Crime> crime = new ArrayList<Crime>();
-	   @Override
+	   @SuppressWarnings("deprecation")
+	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
@@ -29,6 +30,27 @@ public class CrimePagerActivity  extends FragmentActivity{
 		mViewPager.setId(R.id.viewPager);
 		setContentView(mViewPager);
 		init();
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				 Crime crimeselect = crime.get(arg0) ;
+		        
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 	}
 
@@ -49,6 +71,6 @@ public class CrimePagerActivity  extends FragmentActivity{
 		    	}
 		    }
 	}
-	
+	//为ViewPager添加监听事件
 	
 }

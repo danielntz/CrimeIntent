@@ -60,5 +60,12 @@ public class CrimeListFragment  extends  ListFragment{
           startActivity(crimepagerActivity);
        
     } 
+    //当编辑框做了改变后，用户列表也跟着更新
+    @Override
+    public void onResume() {
+    	// TODO Auto-generated method stub
+    	super.onResume();
+        adapter.refresh(CrimeGet.getCrimeget());
+    }
     
 }
