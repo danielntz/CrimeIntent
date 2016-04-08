@@ -1,6 +1,7 @@
 package com.example.testFragment;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -17,6 +21,7 @@ import com.example.info.CrimeGet;
 import com.example.info.CrimeList;
 import com.example.testmenu.CrimeActivity;
 import com.example.testmenu.CrimePagerActivity;
+import com.example.testmenu.R;
 /**
  * 罪行列表项,ListFragment自带ListView
  * @author jsjxy
@@ -37,7 +42,7 @@ public class CrimeListFragment  extends  ListFragment{
     	CrimeGet.setCrimeget(crime_item);    //把当前list中的crime信息保存起来
         adapter = new CrimeListAdapter(crime_item, getContext());
     	setListAdapter(adapter);
-    	
+    	setHasOptionsMenu(true);   //接受选项菜单方法回调
     }
     //点击当前的列表项，列表项的内容传给编辑界面
     @Override
@@ -68,4 +73,36 @@ public class CrimeListFragment  extends  ListFragment{
         adapter.refresh(CrimeGet.getCrimeget());
     }
     
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    	// TODO Auto-generated method stub
+    	super.onCreateOptionsMenu(menu, inflater);
+    	inflater.inflate(R.menu.fragment_crime_list, menu);
+    }
+    //响应菜单选择事件，添加一个新的Crime记录
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	// TODO Auto-generated method stub
+    	switch (item.getItemId()) {
+		case R.id.menu_item_new_crime:
+			 //添加响应事件
+			 Crime crime = new Crime();
+			 CrimeGet.getCrimeget().add(crime);
+			 crime.setmSolved(false);
+			 crime.setmDate(new Date());
+			 crime.setMmTitle(null);
+			 Intent i = new Intent(getContext(),CrimePagerActivity.class);
+			 i.putExtra("Crime_Id",crime.getmId());
+		//	 Log.i(TAG, crime.getmId()+"");
+			 
+			 startActivity(i);
+			 return true;	
+        
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+         
+    }
+    
+    	
 }

@@ -236,6 +236,7 @@ int drawable abc_textfield_searchview_right_holo_dark 0x7f020055
 int drawable abc_textfield_searchview_right_holo_light 0x7f020056
 int drawable crime 0x7f020057
 int drawable ic_launcher 0x7f020058
+int drawable select 0x7f020059
 int id action_bar 0x7f09001d
 int id action_bar_activity_content 0x7f090001
 int id action_bar_container 0x7f09001c
@@ -247,7 +248,7 @@ int id action_context_bar 0x7f09001e
 int id action_menu_divider 0x7f090002
 int id action_menu_presenter 0x7f090003
 int id action_mode_close_button 0x7f090025
-int id action_settings 0x7f090043
+int id action_settings 0x7f090044
 int id activity_chooser_view_content 0x7f090026
 int id always 0x7f090010
 int id beginning 0x7f090017
@@ -273,6 +274,7 @@ int id ifRoom 0x7f090012
 int id image 0x7f090028
 int id listMode 0x7f090007
 int id list_item 0x7f09002a
+int id menu_item_new_crime 0x7f090043
 int id middle 0x7f090019
 int id never 0x7f090013
 int id none 0x7f09001a
@@ -335,7 +337,8 @@ int layout crime_item 0x7f03001a
 int layout crimelist 0x7f03001b
 int layout dialog_date 0x7f03001c
 int layout support_simple_spinner_dropdown_item 0x7f03001d
-int menu main 0x7f0c0000
+int menu fragment_crime_list 0x7f0c0000
+int menu main 0x7f0c0001
 int string abc_action_bar_home_description 0x7f0a0001
 int string abc_action_bar_up_description 0x7f0a0002
 int string abc_action_menu_overflow_description 0x7f0a0003
@@ -351,7 +354,12 @@ int string abc_shareactionprovider_share_with 0x7f0a000c
 int string abc_shareactionprovider_share_with_application 0x7f0a000b
 int string action_settings 0x7f0a000f
 int string app_name 0x7f0a000d
+int string delete_crime 0x7f0a0013
 int string hello_world 0x7f0a000e
+int string hide_subtitle 0x7f0a0011
+int string new_crime 0x7f0a0010
+int string show_subtitle 0x7f0a0014
+int string subtitle 0x7f0a0012
 int style AppBaseTheme 0x7f0b008b
 int style AppTheme 0x7f0b008c
 int style TextAppearance_AppCompat_Base_CompactMenu_Dialog 0x7f0b0063

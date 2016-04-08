@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,23 +50,26 @@ public class CrimeFragment  extends Fragment implements android.view.View.OnClic
           buttondate =(Button) view.findViewById(R.id.crime_date);
           title = (EditText)view.findViewById(R.id.crime_name);
           box = (CheckBox)view.findViewById(R.id.crime_solve);
-          //获得点击列表项的UUID
+          //1获得点击列表项的UUID 2获得重新编辑框的UUID
           UUID crimeid = (UUID)getArguments().getSerializable("Crime_Id");
+          Log.i(TAG, crimeid+"");
         //获得当前点击列表项上的Crime信息
           for(int i= 0 ; i < CrimeGet.getCrimeget().size();i++) {
         	if(CrimeGet.getCrimeget().get(i).getmId().equals(crimeid)){
         		  crimeselect = CrimeGet.getCrimeget().get(i);
         		  break;
         	}
+        	//对编辑框编辑后，Crime集合要进行更改，根据UUID唯一标示符
+        	
          }
           title.setText(crimeselect.getMmTitle());
           box.setChecked(crimeselect.ismSolved());
           buttondate.setText(crimeselect.getmDate().toString().replace("格林尼治标准时间", ""));
-          //对编辑框编辑后，Crime集合要进行更改，根据UUID唯一标示符
-          crimeselect.setMmTitle(title.getText().toString());   
-          crimeselect.setmDate(new Date());
-          crimeselect.setmSolved(box.isChecked());
-          CrimeGet.setCrimeget(CrimeGet.getCrimeget());
+          
+       //   crimeselect.setMmTitle(title.getText().toString());   
+       //   crimeselect.setmDate(new Date());
+       //   crimeselect.setmSolved(box.isChecked());
+       //   CrimeGet.setCrimeget(CrimeGet.getCrimeget());
           buttondate.setOnClickListener(this);
       return view;
 	}
@@ -99,7 +103,21 @@ public class CrimeFragment  extends Fragment implements android.view.View.OnClic
 		}
 	}
 
-	 
+	@Override
+	public void onStop() {
+	// TODO Auto-generated method stub
+	super.onStop();
+	Log.i(TAG, "stop");
+	//crimeselect.setmDate((Date)buttondate.getText());
+	crimeselect.setMmTitle(title.getText().toString());
+	crimeselect.setmSolved(box.isChecked());
+	} 
 	
+	@Override
+	public void onDestroy() {
+	// TODO Auto-generated method stub
+	super.onDestroy();
+	Log.i(TAG, "Destroy");
+	}
 	
 }
