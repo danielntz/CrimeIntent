@@ -65,7 +65,7 @@ public class CrimePagerActivity  extends FragmentActivity{
 		 // Toast.makeText(getApplicationContext(), crimeID+"", 0).show();
 		    for(int i = 0 ; i < crime.size(); i++){
 		    	if(crime.get(i).getmId().equals(crimeID)){
-		    		Log.i(TAG, crimeID+""+ "ÄãºÃ");
+		    		
 		    		mViewPager.setCurrentItem(i);
 		    		break;
 		    	}

@@ -3,6 +3,8 @@ package com.example.testFragment;
 import java.util.Date;
 import java.util.UUID;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,7 +32,7 @@ public class CrimeFragment  extends Fragment implements android.view.View.OnClic
 	    private   Crime  crimeselect;
 	    private   CheckBox  box;
 	    private   EditText  title;
-	 
+	    private   static  final int REQUEST_DATE = 0;
 	    public   static CrimeFragment newInstance(UUID crimeid){
 	    	 Bundle bundle  = new Bundle();
 	    	 bundle.putSerializable("Crime_Id", crimeid);
@@ -67,6 +69,18 @@ public class CrimeFragment  extends Fragment implements android.view.View.OnClic
           buttondate.setOnClickListener(this);
       return view;
 	}
+	    //响应日期对话框的内容,设置相应Crime的日期，并且刷新日期按钮
+	    @Override
+	    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    // TODO Auto-generated method stub
+	    super.onActivityResult(requestCode, resultCode, data);
+	      if(resultCode != Activity.RESULT_OK) return;
+	      if(requestCode ==REQUEST_DATE){
+	    	   Date date = (Date) data.getSerializableExtra("Crime_Date");
+	    	   crimeselect.setmDate(date);
+	    	   buttondate.setText(crimeselect.getmDate().toString().replace("格林尼治标准时间", ""));
+	      }
+	    } 
 
 	@Override
 	public void onClick(View v) {
@@ -74,8 +88,10 @@ public class CrimeFragment  extends Fragment implements android.view.View.OnClic
 		  switch (v.getId()) {
 		case R.id.crime_date:
 			          FragmentManager fm = getActivity().getSupportFragmentManager();
-			          DatePickerFragment   dialgo = new DatePickerFragment();
-			          dialgo.show(fm, DIALOG_DATE);
+			       //   DatePickerFragment   dialgo = new DatePickerFragment();
+			          DatePickerFragment  dialog  =  DatePickerFragment.newInstance(crimeselect.getmDate());
+			          dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE);  //设置Fragment的目标
+			          dialog.show(fm, DIALOG_DATE);
 		       	break;
 
 		default:
